@@ -1,4 +1,4 @@
-package com.tedlassocoach
+package com.nthnism.tedlassocoach
 
 import android.app.Application
 import com.facebook.react.PackageList

@@ -1,4 +1,4 @@
-package com.tedlassocoach
+package com.nthnism.tedlassocoach
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate
