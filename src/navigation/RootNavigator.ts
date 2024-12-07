@@ -4,6 +4,7 @@ import {HomeScreen} from '../screens/HomeScreen';
 import {EpisodeDetailsScreen} from '../screens/EpisodeDetailsScreen';
 import {CastScreen} from '../screens/CastScreen';
 import {EpisodesScreen} from '../screens/EpisodesScreen';
+import {FavoriteEpisodesScreen} from '../screens/FavoriteEpisodesScreen';
 
 const RootStack = createNativeStackNavigator({
   initialRouteName: 'Home',
@@ -14,10 +15,10 @@ const RootStack = createNativeStackNavigator({
         title: 'Ted Lasso Coach',
       },
     },
-    EpisodeDetails: {
-      screen: EpisodeDetailsScreen,
+    Cast: {
+      screen: CastScreen,
       options: {
-        title: 'Episode Details',
+        title: 'Casting Details',
       },
     },
     Episodes: {
@@ -26,10 +27,16 @@ const RootStack = createNativeStackNavigator({
         title: 'Episodes',
       },
     },
-    Cast: {
-      screen: CastScreen,
+    EpisodeDetails: {
+      screen: EpisodeDetailsScreen,
       options: {
-        title: 'Casting Details',
+        title: 'Episode Details',
+      },
+    },
+    Favorites: {
+      screen: FavoriteEpisodesScreen,
+      options: {
+        title: 'Favorite Episodes',
       },
     },
   },

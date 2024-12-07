@@ -42,12 +42,15 @@ export const HomeScreen = (props: HomeScreenProps) => {
       <View style={styles.container}>
         <HeadLine>Everything Ted Lasso</HeadLine>
         <Text>{data.summary}</Text>
-        <LinkText url={data.officialSite}>Visit Official Site </LinkText>
+        <LinkText url={data.officialSite}>Visit Official Site</LinkText>
         <Button onPress={() => navigation.navigate('Cast')}>
           Check Out The Cast
         </Button>
         <Button onPress={() => navigation.navigate('Episodes')}>
           View List Of Episodes
+        </Button>
+        <Button onPress={() => navigation.navigate('Favorites')}>
+          View Your Favorite Episodes
         </Button>
       </View>
     </ScrollableScreen>

@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, View, Text} from 'react-native';
-import {ScrollableScreen} from '../components/ScrollableScreen';
+import {StyleSheet, FlatList} from 'react-native';
 import {apiEndpoints} from '../api/apiEndpoints';
 import {customFetch} from '../api/customFetch';
+import {Screen} from '../components/Screen';
+import {EpisodeCard} from '../components/EpisodeCard';
 
 export const EpisodesScreen = () => {
-  const [data, setData] = useState<Record<string, any> | null>(null);
+  const [data, setData] = useState<Record<string, any>[] | null>(null);
   const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
@@ -22,20 +23,28 @@ export const EpisodesScreen = () => {
 
   console.log('EpisodesScreen', isInitialized, data);
 
-  if (!isInitialized) {
+  if (!isInitialized || !data) {
     return null;
   }
 
   return (
-    <ScrollableScreen>
-      <Text>Der EpisodesScreen</Text>
-    </ScrollableScreen>
+    <Screen>
+      <FlatList
+        style={styles.container}
+        contentContainerStyle={styles.flatListcontent}
+        data={data}
+        renderItem={({item}) => <EpisodeCard episodeInfo={item} />}
+      />
+    </Screen>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#ffffff',
-    flex: 1,
+    paddingTop: 16,
+    paddingHorizontal: 16,
+  },
+  flatListcontent: {
+    gap: 16,
   },
 });
