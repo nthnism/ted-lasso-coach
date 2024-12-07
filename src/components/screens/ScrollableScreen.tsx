@@ -11,10 +11,12 @@ export const ScrollableScreen = (props: ScrollableScreenProps) => {
   return (
     <View style={[styles.container]}>
       <ScrollView
-        contentContainerStyle={{
-          paddingBottom: insets.bottom,
-          //   paddingTop: insets.top,
-        }}>
+        contentContainerStyle={[
+          styles.scrollView,
+          {
+            paddingBottom: insets.bottom,
+          },
+        ]}>
         {props.children}
       </ScrollView>
     </View>
@@ -25,5 +27,9 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#ffffff',
     flex: 1,
+  },
+  scrollView: {
+    paddingTop: 16,
+    paddingHorizontal: 16,
   },
 });

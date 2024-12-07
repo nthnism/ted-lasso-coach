@@ -6,8 +6,18 @@ import {EpisodeDetailsScreen} from '../components/screens/EpisodeDetailsScreen';
 const RootStack = createNativeStackNavigator({
   initialRouteName: 'Home',
   screens: {
-    Home: HomeScreen,
-    EpisodeDetails: EpisodeDetailsScreen,
+    Home: {
+      screen: HomeScreen,
+      options: {
+        title: 'Ted Lasso Coach',
+      },
+    },
+    EpisodeDetails: {
+      screen: EpisodeDetailsScreen,
+      options: {
+        title: 'Episode Details',
+      },
+    },
   },
 });
 
