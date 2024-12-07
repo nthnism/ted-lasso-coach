@@ -7,9 +7,9 @@ import {ImageBanner} from '../components/ImageBanner';
 import {HeadLine} from '../components/HeadLine';
 import {Button} from '@react-navigation/elements';
 import {useAppSelector} from '../hooks/useAppSelector';
-import {useDispatch} from 'react-redux';
-import {addToFavorites, removeFromFavorites} from '../redux/favoritesSlice';
+import {setFavorites} from '../redux/favoritesSlice';
 import {useAppDispatch} from '../hooks/useAppDispatch';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 interface EpisodeDetailsScreenProps {
   route: {params: Record<string, any>};
@@ -41,6 +41,26 @@ export const EpisodeDetailsScreen = (props: EpisodeDetailsScreenProps) => {
 
   console.log('EpisodeDetailsScreen', episodeId, isFavorite);
 
+  const handlePress = async () => {
+    try {
+      let updatedavoritesIds;
+      if (isFavorite) {
+        updatedavoritesIds = favoritesIds.filter(
+          favoriteId => favoriteId !== episodeId,
+        );
+      } else {
+        updatedavoritesIds = [...favoritesIds, episodeId];
+      }
+      await AsyncStorage.setItem(
+        'favorites-ids',
+        JSON.stringify(updatedavoritesIds),
+      );
+      dispatch(setFavorites(updatedavoritesIds));
+    } catch (e) {
+      console.log('Error while trying to write to AsyncStorage', e);
+    }
+  };
+
   if (!isInitialized || !data) {
     return null;
   }
@@ -51,14 +71,7 @@ export const EpisodeDetailsScreen = (props: EpisodeDetailsScreenProps) => {
       <View style={styles.container}>
         <HeadLine>{data.name}</HeadLine>
         <Text>{data.summary}</Text>
-        <Button
-          onPress={() => {
-            dispatch(
-              isFavorite
-                ? removeFromFavorites(episodeId)
-                : addToFavorites(episodeId),
-            );
-          }}>
+        <Button onPress={handlePress}>
           {isFavorite ? 'Remove From Favorites' : 'Add To Favorites'}
         </Button>
       </View>

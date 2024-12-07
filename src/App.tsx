@@ -1,15 +1,31 @@
-import React from 'react';
-import {SafeAreaProvider} from 'react-native-safe-area-context';
+import React, {useEffect} from 'react';
 import {RootNavigatior} from './navigation/RootNavigator';
-import {Provider as ReduxProvider} from 'react-redux';
-import {store} from './redux/store';
+import {useAppDispatch} from './hooks/useAppDispatch';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {setFavorites} from './redux/favoritesSlice';
 
 export const App = () => {
-  return (
-    <SafeAreaProvider>
-      <ReduxProvider store={store}>
-        <RootNavigatior />
-      </ReduxProvider>
-    </SafeAreaProvider>
-  );
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const jsonFavoriteIds = await AsyncStorage.getItem('favorites-ids');
+        console.log('jsonFavoriteIds', jsonFavoriteIds, typeof jsonFavoriteIds);
+        if (jsonFavoriteIds) {
+          const parsedFavoriteIds = JSON.parse(jsonFavoriteIds);
+          console.log(
+            'parsedFavoriteIds',
+            parsedFavoriteIds,
+            typeof parsedFavoriteIds,
+          );
+
+          dispatch(setFavorites(parsedFavoriteIds));
+        }
+      } catch (e) {
+        console.log('Error while trying to read from AsyncStorage', e);
+      }
+    })();
+  }, [dispatch]);
+  return <RootNavigatior />;
 };

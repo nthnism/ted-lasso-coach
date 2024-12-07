@@ -3,8 +3,8 @@ import {StyleSheet, FlatList} from 'react-native';
 import {apiEndpoints} from '../api/apiEndpoints';
 import {customFetch} from '../api/customFetch';
 import {useAppSelector} from '../hooks/useAppSelector';
-import {Screen} from 'react-native-screens';
 import {EpisodeCard} from '../components/EpisodeCard';
+import {Screen} from '../components/Screen';
 
 export const FavoriteEpisodesScreen = () => {
   const [data, setData] = useState<Record<string, any>[] | null>(null);
