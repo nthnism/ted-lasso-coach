@@ -1,41 +1,56 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, View, Text} from 'react-native';
-import {ScrollableScreen} from '../components/ScrollableScreen';
+import {StyleSheet, FlatList} from 'react-native';
 import {apiEndpoints} from '../api/apiEndpoints';
 import {customFetch} from '../api/customFetch';
+import {useAppSelector} from '../hooks/useAppSelector';
+import {Screen} from 'react-native-screens';
+import {EpisodeCard} from '../components/EpisodeCard';
 
 export const FavoriteEpisodesScreen = () => {
-  const [data, setData] = useState<Record<string, any> | null>(null);
+  const [data, setData] = useState<Record<string, any>[] | null>(null);
   const [isInitialized, setIsInitialized] = useState(false);
+
+  const favoritesIds = useAppSelector(store => store.favorites.favoritesIds);
 
   useEffect(() => {
     (async () => {
       try {
         const res = await customFetch(apiEndpoints.getEpisodeList());
-        setData(res);
+        const filteredRes = res.filter(episode =>
+          favoritesIds.includes(episode.id),
+        );
+        setData(filteredRes);
         setIsInitialized(true);
       } catch (e) {
         console.log('Got error initializing FavoriteEpisodesScreen', e);
       }
     })();
-  }, []);
+  }, [favoritesIds]);
 
-  console.log('FavoriteEpisodesScreen', isInitialized, data);
+  console.log('FavoriteEpisodesScreen', favoritesIds);
 
-  if (!isInitialized) {
+  if (!isInitialized || !data) {
     return null;
   }
 
   return (
-    <ScrollableScreen>
-      <Text>Der FavoriteEpisodesScreen</Text>
-    </ScrollableScreen>
+    <Screen>
+      <FlatList
+        style={styles.container}
+        contentContainerStyle={styles.flatListcontent}
+        data={data}
+        renderItem={({item}) => <EpisodeCard episodeInfo={item} />}
+      />
+    </Screen>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#ffffff',
-    flex: 1,
+    paddingTop: 16,
+    paddingHorizontal: 16,
+  },
+  flatListcontent: {
+    gap: 16,
   },
 });

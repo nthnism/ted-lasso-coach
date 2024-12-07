@@ -5,7 +5,7 @@ import {ScrollableScreen} from '../components/ScrollableScreen';
 import {apiEndpoints} from '../api/apiEndpoints';
 import {customFetch} from '../api/customFetch';
 import {useAppNavigation} from '../hooks/useAppNavigation';
-import {HomeScreenBanner} from '../components/HomeScreenBanner';
+import {ImageBanner} from '../components/ImageBanner';
 import {HeadLine} from '../components/HeadLine';
 import {LinkText} from '../components/LinkText';
 import {Button} from '@react-navigation/elements';
@@ -38,7 +38,7 @@ export const HomeScreen = (props: HomeScreenProps) => {
 
   return (
     <ScrollableScreen>
-      <HomeScreenBanner url={data.image.original} />
+      <ImageBanner url={data.image.original} />
       <View style={styles.container}>
         <HeadLine>Everything Ted Lasso</HeadLine>
         <Text>{data.summary}</Text>

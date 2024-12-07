@@ -1,11 +1,11 @@
 import React from 'react';
 import {Image, StyleSheet} from 'react-native';
 
-interface HomeScreenBannerProps {
+interface ImageBannerProps {
   url: string;
 }
 
-export const HomeScreenBanner = (props: HomeScreenBannerProps) => (
+export const ImageBanner = (props: ImageBannerProps) => (
   <Image
     style={styles.image}
     source={{
