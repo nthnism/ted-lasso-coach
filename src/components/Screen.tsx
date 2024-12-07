@@ -1,11 +1,11 @@
 import React from 'react';
-import {ScrollView, StyleSheet, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import type {PropsWithChildren} from 'react';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
-interface ScrollableScreenProps extends PropsWithChildren {}
+interface ScreenProps extends PropsWithChildren {}
 
-export const ScrollableScreen = (props: ScrollableScreenProps) => {
+export const Screen = (props: ScreenProps) => {
   const insets = useSafeAreaInsets();
 
   return (
@@ -16,7 +16,7 @@ export const ScrollableScreen = (props: ScrollableScreenProps) => {
           paddingBottom: insets.bottom,
         },
       ]}>
-      <ScrollView>{props.children}</ScrollView>
+      {props.children}
     </View>
   );
 };

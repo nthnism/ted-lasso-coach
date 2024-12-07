@@ -1,12 +1,14 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, View, Text, FlatList} from 'react-native';
 import type {PropsWithChildren} from 'react';
 import {ScrollableScreen} from '../components/ScrollableScreen';
 import {apiEndpoints} from '../api/apiEndpoints';
 import {customFetch} from '../api/customFetch';
+import {CastCard, CastType} from '../components/CastCard';
+import {Screen} from '../components/Screen';
 
 export const CastScreen = () => {
-  const [data, setData] = useState<Record<string, any> | null>(null);
+  const [data, setData] = useState<CastType[] | null>(null);
   const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
@@ -23,20 +25,28 @@ export const CastScreen = () => {
 
   console.log('CastScreen', isInitialized, data);
 
-  if (!isInitialized) {
+  if (!isInitialized || !data) {
     return null;
   }
 
   return (
-    <ScrollableScreen>
-      <Text>Der CastScreen</Text>
-    </ScrollableScreen>
+    <Screen>
+      <FlatList
+        style={styles.container}
+        contentContainerStyle={styles.flatListcontent}
+        data={data}
+        renderItem={({item}) => <CastCard castInfo={item} />}
+      />
+    </Screen>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#ffffff',
-    flex: 1,
+    paddingTop: 16,
+    paddingHorizontal: 16,
+  },
+  flatListcontent: {
+    gap: 16,
   },
 });

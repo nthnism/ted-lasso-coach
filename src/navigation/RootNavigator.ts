@@ -3,6 +3,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {HomeScreen} from '../screens/HomeScreen';
 import {EpisodeDetailsScreen} from '../screens/EpisodeDetailsScreen';
 import {CastScreen} from '../screens/CastScreen';
+import {EpisodesScreen} from '../screens/EpisodesScreen';
 
 const RootStack = createNativeStackNavigator({
   initialRouteName: 'Home',
@@ -17,6 +18,12 @@ const RootStack = createNativeStackNavigator({
       screen: EpisodeDetailsScreen,
       options: {
         title: 'Episode Details',
+      },
+    },
+    Episodes: {
+      screen: EpisodesScreen,
+      options: {
+        title: 'Episodes',
       },
     },
     Cast: {

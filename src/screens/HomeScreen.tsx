@@ -46,6 +46,9 @@ export const HomeScreen = (props: HomeScreenProps) => {
         <Button onPress={() => navigation.navigate('Cast')}>
           Check Out The Cast
         </Button>
+        <Button onPress={() => navigation.navigate('Episodes')}>
+          View List Of Episodes
+        </Button>
       </View>
     </ScrollableScreen>
   );
@@ -55,6 +58,6 @@ const styles = StyleSheet.create({
   container: {
     paddingTop: 16,
     paddingHorizontal: 16,
-    gap: 16,
+    gap: 24,
   },
 });
