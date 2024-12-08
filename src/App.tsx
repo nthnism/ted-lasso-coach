@@ -11,14 +11,8 @@ export const App = () => {
     (async () => {
       try {
         const jsonFavoriteIds = await AsyncStorage.getItem('favorites-ids');
-        console.log('jsonFavoriteIds', jsonFavoriteIds, typeof jsonFavoriteIds);
         if (jsonFavoriteIds) {
           const parsedFavoriteIds = JSON.parse(jsonFavoriteIds);
-          console.log(
-            'parsedFavoriteIds',
-            parsedFavoriteIds,
-            typeof parsedFavoriteIds,
-          );
 
           dispatch(setFavorites(parsedFavoriteIds));
         }

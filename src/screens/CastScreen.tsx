@@ -1,7 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, View, Text, FlatList} from 'react-native';
-import type {PropsWithChildren} from 'react';
-import {ScrollableScreen} from '../components/ScrollableScreen';
+import {StyleSheet, FlatList} from 'react-native';
 import {apiEndpoints} from '../api/apiEndpoints';
 import {customFetch} from '../api/customFetch';
 import {CastCard, CastType} from '../components/CastCard';
@@ -22,8 +20,6 @@ export const CastScreen = () => {
       }
     })();
   }, []);
-
-  console.log('CastScreen', isInitialized, data);
 
   if (!isInitialized || !data) {
     return null;

@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import type {PropsWithChildren} from 'react';
 import {ScrollableScreen} from '../components/ScrollableScreen';
 import {apiEndpoints} from '../api/apiEndpoints';
 import {customFetch} from '../api/customFetch';
@@ -10,9 +9,7 @@ import {HeadLine} from '../components/HeadLine';
 import {LinkText} from '../components/LinkText';
 import {Button} from '@react-navigation/elements';
 
-interface HomeScreenProps extends PropsWithChildren {}
-
-export const HomeScreen = (props: HomeScreenProps) => {
+export const HomeScreen = () => {
   const [data, setData] = useState<Record<string, any> | null>(null);
   const [isInitialized, setIsInitialized] = useState(false);
 
@@ -29,8 +26,6 @@ export const HomeScreen = (props: HomeScreenProps) => {
       }
     })();
   }, []);
-
-  console.log('HomeScreen', isInitialized, data);
 
   if (!isInitialized || !data) {
     return null;

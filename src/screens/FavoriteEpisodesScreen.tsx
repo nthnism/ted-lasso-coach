@@ -27,8 +27,6 @@ export const FavoriteEpisodesScreen = () => {
     })();
   }, [favoritesIds]);
 
-  console.log('FavoriteEpisodesScreen', favoritesIds);
-
   if (!isInitialized || !data) {
     return null;
   }

@@ -39,8 +39,6 @@ export const EpisodeDetailsScreen = (props: EpisodeDetailsScreenProps) => {
     })();
   }, [episodeId]);
 
-  console.log('EpisodeDetailsScreen', episodeId, isFavorite);
-
   const handlePress = async () => {
     try {
       let updatedavoritesIds;

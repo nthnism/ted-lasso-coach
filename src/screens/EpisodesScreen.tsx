@@ -21,8 +21,6 @@ export const EpisodesScreen = () => {
     })();
   }, []);
 
-  console.log('EpisodesScreen', isInitialized, data);
-
   if (!isInitialized || !data) {
     return null;
   }
