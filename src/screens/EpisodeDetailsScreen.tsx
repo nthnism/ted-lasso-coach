@@ -39,21 +39,21 @@ export const EpisodeDetailsScreen = (props: EpisodeDetailsScreenProps) => {
     })();
   }, [episodeId]);
 
-  const handlePress = async () => {
+  const handleFavoritePress = async () => {
     try {
-      let updatedavoritesIds;
+      let updatedFavoritesIds;
       if (isFavorite) {
-        updatedavoritesIds = favoritesIds.filter(
+        updatedFavoritesIds = favoritesIds.filter(
           favoriteId => favoriteId !== episodeId,
         );
       } else {
-        updatedavoritesIds = [...favoritesIds, episodeId];
+        updatedFavoritesIds = [...favoritesIds, episodeId];
       }
       await AsyncStorage.setItem(
         'favorites-ids',
-        JSON.stringify(updatedavoritesIds),
+        JSON.stringify(updatedFavoritesIds),
       );
-      dispatch(setFavorites(updatedavoritesIds));
+      dispatch(setFavorites(updatedFavoritesIds));
     } catch (e) {
       console.log('Error while trying to write to AsyncStorage', e);
     }
@@ -69,7 +69,7 @@ export const EpisodeDetailsScreen = (props: EpisodeDetailsScreenProps) => {
       <View style={styles.container}>
         <HeadLine>{data.name}</HeadLine>
         <Text>{data.summary}</Text>
-        <Button onPress={handlePress}>
+        <Button onPress={handleFavoritePress}>
           {isFavorite ? 'Remove From Favorites' : 'Add To Favorites'}
         </Button>
       </View>
