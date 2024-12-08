@@ -28,7 +28,6 @@ export const CastScreen = () => {
   return (
     <Screen>
       <FlatList
-        style={styles.container}
         contentContainerStyle={styles.flatListcontent}
         data={data}
         renderItem={({item}) => <CastCard castInfo={item} />}
@@ -38,11 +37,8 @@ export const CastScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    paddingTop: 16,
-    paddingHorizontal: 16,
-  },
   flatListcontent: {
     gap: 16,
+    padding: 16,
   },
 });

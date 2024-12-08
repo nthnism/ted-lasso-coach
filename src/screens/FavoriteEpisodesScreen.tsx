@@ -34,7 +34,6 @@ export const FavoriteEpisodesScreen = () => {
   return (
     <Screen>
       <FlatList
-        style={styles.container}
         contentContainerStyle={styles.flatListcontent}
         data={data}
         renderItem={({item}) => <EpisodeCard episodeInfo={item} />}
@@ -44,11 +43,8 @@ export const FavoriteEpisodesScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    paddingTop: 16,
-    paddingHorizontal: 16,
-  },
   flatListcontent: {
     gap: 16,
+    padding: 16,
   },
 });
